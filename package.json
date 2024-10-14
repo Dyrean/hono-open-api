@@ -6,13 +6,24 @@
         "dev": "bun run --hot src/index.ts",
         "lint": "eslint .",
         "lint:fix": "bun lint --fix",
-        "test": "NODE_ENV=test bun test"
+        "test": "NODE_ENV=test bun test",
+        "db:generate": "bunx drizzle-kit generate",
+        "db:migrate": "bunx drizzle-kit migrate",
+        "db:push": "bunx drizzle-kit push",
+        "db:studio": "bunx drizzle-kit studio"
     },
     "dependencies": {
         "@hono/zod-openapi": "^0.16.4",
+        "@libsql/client": "^0.14.0",
         "@scalar/hono-api-reference": "^0.5.153",
+        "@typescript-eslint/eslint-plugin": "^8.9.0",
+        "@typescript-eslint/parser": "^8.9.0",
+        "drizzle-orm": "^0.34.1",
+        "drizzle-zod": "^0.5.1",
+        "eslint-plugin-drizzle": "^0.2.3",
         "hono": "^4.6.4",
         "hono-pino": "^0.3.0",
+        "nanoid": "^5.0.7",
         "pino": "^9.4.0",
         "pino-pretty": "^11.2.2",
         "stoker": "^1.0.9",
@@ -20,8 +31,10 @@
     },
     "devDependencies": {
         "@antfu/eslint-config": "^3.7.3",
-        "@types/bun": "latest",
+        "@types/bun": "^1.1.11",
+        "drizzle-kit": "^0.25.0",
         "eslint": "^9.11.1",
-        "eslint-plugin-format": "^0.1.2"
+        "eslint-plugin-format": "^0.1.2",
+        "tsx": "^4.19.1"
     }
 }

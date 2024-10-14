@@ -1,0 +1,35 @@
+import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import { createInsertSchema, createSelectSchema } from "drizzle-zod";
+
+import { newId } from "@/lib/uuid";
+
+export const tasks = sqliteTable("tasks", {
+	id: text()
+		.primaryKey()
+		.$defaultFn(() => newId()),
+	name: text()
+		.notNull(),
+	done: integer({ mode: "boolean" })
+		.notNull()
+		.default(false),
+	createdAt: integer("created_at", { mode: "timestamp" })
+		.$defaultFn(() => new Date()),
+	updatedAt: integer("updated_at", { mode: "timestamp" })
+		.$defaultFn(() => new Date())
+		.$onUpdate(() => new Date()),
+});
+
+export const selectTasksSchema = createSelectSchema(tasks);
+
+export const insertTasksSchema = createInsertSchema(
+	tasks,
+	{
+		name: schema => schema.name.min(1).max(500),
+	},
+).required({
+	done: true,
+}).omit({
+	id: true,
+	createdAt: true,
+	updatedAt: true,
+});
