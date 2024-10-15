@@ -6,10 +6,9 @@ export default antfu({
 	typescript: true,
 	formatters: true,
 	stylistic: {
-		indent: "tab",
+		indent: "4",
 		semi: true,
 		quotes: "double",
-		useTabs: true,
 	},
 	ignores: ["**/migrations/*"],
 }, {
